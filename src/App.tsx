@@ -1,7 +1,7 @@
-import './App.css';
+import "./App.css";
 
 function App() {
-    return <p>Scene planner</p>;
+  return <p>Scene planner</p>;
 }
 
 export default App;
