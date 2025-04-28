@@ -32,6 +32,11 @@ export default tseslint.config(
       'react': reactPlugin,
       prettier: prettierPlugin,
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     rules: {
       // React rules
       ...reactHooks.configs.recommended.rules,
