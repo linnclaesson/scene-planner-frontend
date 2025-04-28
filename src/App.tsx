@@ -1,7 +1,6 @@
 import "./App.css";
+import { Router } from "./routes/Router";
 
-function App() {
-  return <p>Scene planner</p>;
-}
-
-export default App;
+export const App = () => {
+  return <Router />;
+};
