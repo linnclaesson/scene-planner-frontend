@@ -8,10 +8,13 @@ export const Navbar = () => {
         <p className="hover:underline">Hem</p>
       </Link>
       <div className="flex gap-5">
-        <Link className="hover:underline" to="/form">
-          Lägg till uppsättning
+        <Link className="hover:underline" to="/allProductions">
+          Alla spex
         </Link>
-        <Link className="hover:underline" to="/p/:playId">
+        <Link className="hover:underline" to="/scenisar">
+          Scenisar
+        </Link>
+        <Link className="hover:underline" to="/scenplannerare/:playId">
           Scenplannerare
         </Link>
       </div>

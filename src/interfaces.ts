@@ -13,7 +13,7 @@ export interface Role {
 
 export interface Act {
   id: string;
-  name: string;
+  title: string;
   scenes: Scene[];
 }
 

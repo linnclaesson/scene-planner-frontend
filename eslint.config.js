@@ -50,7 +50,7 @@ export default tseslint.config(
       'react/jsx-curly-brace-presence': ['warn', { props: "never", children: "never" }],
       'react/jsx-key': 'error',
       // JS rules
-      'no-console': 'warn',
+      //'no-console': 'warn',
       'no-debugger': 'error',
       'eqeqeq': ['error', 'always'],
       'curly': 'error',
