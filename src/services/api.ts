@@ -1,4 +1,10 @@
-import { Act, Actor, Play } from "../interfaces";
+import {
+  Act,
+  Actor,
+  Play,
+  Rehearsal,
+  SceneRoleAssignment,
+} from "../interfaces";
 
 const API_URL_PG: string = import.meta.env.VITE_API_URL_PG;
 
@@ -67,6 +73,14 @@ export const postPGScene = async (scene: { name: string; actId: string }) => {
   return response.json();
 };
 
+export const getScenesByPlayId = async (playId: string) => {
+  const response = await fetch(`${API_URL_PG}/scene/play/${playId}`);
+  if (!response.ok) {
+    throw new Error("Something went wrong when fetching scenes by playId");
+  }
+  return response.json();
+};
+
 // ROLE
 export const postPGRole = async (role: { name: string; playId: string }) => {
   const response = await fetch(`${API_URL_PG}/role/play/${role.playId}`, {
@@ -100,4 +114,87 @@ export const postPGActor = async (actorData: {
     throw new Error("Kunde inte lägga till actor");
   }
   return res.json();
+};
+
+// SCENE ROLE ASSIGNMENTS
+export const postPGSceneRoleAssignment = async (
+  assignment: SceneRoleAssignment,
+): Promise<SceneRoleAssignment> => {
+  const response = await fetch(`${API_URL_PG}/assignments`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(assignment),
+  });
+
+  if (!response.ok) {
+    throw new Error("Kunde inte lägga till scene-role-assignment");
+  }
+
+  return response.json();
+};
+
+// REHEARSAL
+export const fetchPGRehearsalsByPlayId = async (
+  playId: string,
+): Promise<Rehearsal[]> => {
+  const res = await fetch(`${API_URL_PG}/rehearsal/play/${playId}`);
+  if (!res.ok) {
+    throw new Error("Kunde inte hämta rep för denna pjäs");
+  }
+  return res.json();
+};
+
+export const postPGRehearsal = async (
+  playId: string,
+  rehearsalData: { date: string },
+): Promise<Rehearsal> => {
+  const res = await fetch(`${API_URL_PG}/rehearsal/play/${playId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(rehearsalData),
+  });
+  if (!res.ok) {
+    throw new Error("Kunde inte skapa repetition");
+  }
+  return res.json();
+};
+
+export const deletePGRehearsal = async (rehearsalId: string): Promise<void> => {
+  const res = await fetch(`${API_URL_PG}/rehearsal/delete/${rehearsalId}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    throw new Error("Kunde inte ta bort repetition");
+  }
+};
+
+export const addSceneToPGRehearsal = async (
+  rehearsalId: string,
+  sceneId: string,
+): Promise<Rehearsal> => {
+  const res = await fetch(
+    `${API_URL_PG}/rehearsal/${rehearsalId}/scene/${sceneId}`,
+    {
+      method: "PUT",
+    },
+  );
+  if (!res.ok) {
+    throw new Error("Kunde inte lägga till scen till repetition");
+  }
+  return res.json();
+};
+
+export const removeSceneFromPGRehearsal = async (
+  rehearsalId: string,
+  sceneId: string,
+): Promise<void> => {
+  const res = await fetch(
+    `${API_URL_PG}/rehearsal/${rehearsalId}/scene/${sceneId}`,
+    {
+      method: "DELETE",
+    },
+  );
+  if (!res.ok) {
+    throw new Error("Kunde inte ta bort scen från repetition");
+  }
 };

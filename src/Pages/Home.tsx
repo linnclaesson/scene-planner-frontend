@@ -8,15 +8,18 @@ export const Home = () => {
         På denna webbplats kan du lägga till uppsättningar för att planera in
         vilka scener som har och ska repas!
       </h2>
-      <section className="text-neutral-50 flex gap-10 justify-center text-center m-10">
-        <Link className="bg-lime-950 w-1/3 p-25 hover:bg-lime-900" to="/form">
-          <p>Lägg till information om en uppsättning här!</p>
+      <section className="text-neutral-50 flex gap-20 justify-center text-center m-10">
+        <Link
+          className="bg-lime-950 w-1/3 p-25 font-bold text-lg hover:bg-lime-900"
+          to="/form"
+        >
+          <p>Lägg till ett nytt spex här!</p>
         </Link>
         <Link
-          className="bg-lime-950 w-1/3 p-25 hover:bg-lime-900"
-          to="/p/:playId"
+          className="bg-lime-950 w-1/3 p-25 font-bold text-lg hover:bg-lime-900"
+          to="/form"
         >
-          <p>Få en överblick på repschemat och planera här!</p>
+          <p>Lägg till scenisar här!</p>
         </Link>
       </section>
     </section>

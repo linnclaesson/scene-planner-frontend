@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { Play } from "../interfaces";
 import { fetchPGPlayById } from "../services/api";
@@ -58,18 +58,40 @@ export const PlayEditPage = () => {
             ))}
           </section>
 
-          {/* === Nästa steg === */}
+          {/* === Lägg till rollfördelningar === */}
           <section className="p-6 border rounded-2xl shadow-md bg-white">
-            <h2 className="text-2xl font-semibold mb-4">4. Gå vidare</h2>
+            <h2 className="text-2xl font-semibold mb-4">4. Rollfördelningar</h2>
             <p className="mb-4">
-              När du lagt till alla delar kan du gå vidare till scenplaneraren.
+              När du lagt till akter, scener och roller kan vi koppla vem som
+              ska spela vad i vilken scen.
             </p>
-            <a
-              href={`/play/${play.id}/planner`}
-              className="inline-block bg-black text-white rounded-3xl px-6 py-3 hover:bg-gray-900"
+            <p className="font-bold">
+              !OBS! Detta kräver att alla aktuella scenisar finns inlagda under
+              <Link to="/scenisar" className="hover:text-teal-500">
+                {" "}
+                scenisar
+              </Link>
+            </p>
+            <Link
+              to={"/assignments/" + play.id}
+              className="flex justify-between text-lg p-5 my-5 font-semibold hover:cursor-pointer hover:bg-teal-500 border rounded-2xl py-5"
+            >
+              Gå till rollfördelaren →
+            </Link>
+          </section>
+
+          {/* === Gå till scenplanneraren === */}
+          <section className="p-6 border rounded-2xl shadow-md bg-white">
+            <h2 className="text-2xl font-semibold mb-4">5. Scenplanneraren</h2>
+            <p className="mb-4">
+              När alla steg ovan är avklarade är det dags att planera scener!
+            </p>
+            <Link
+              to={"/scenplannerare/" + play.id}
+              className="flex justify-between text-lg p-5 my-5 font-semibold hover:cursor-pointer hover:bg-teal-500 border rounded-2xl py-5"
             >
               Gå till scenplaneraren →
-            </a>
+            </Link>
           </section>
         </div>
       </div>
@@ -99,7 +121,7 @@ export const PlayEditPage = () => {
           <h3 className="text-lg font-semibold">Roller</h3>
           <ul className="mt-2">
             {play.roles.map((role) => (
-              <li key={role.id} className="bg-green-300 px-3 py-1 rounded my-1">
+              <li key={role.id} className="bg-red-200 px-3 py-1 rounded my-1">
                 {role.name}
               </li>
             ))}
