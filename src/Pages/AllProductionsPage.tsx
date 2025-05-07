@@ -31,12 +31,12 @@ export const AllProductionsPage = () => {
         <div>
           {response.length > 0 ? (
             response.map((play, index) => (
-              <span
-                key={index}
-                className="flex justify-between text-lg p-5 my-5 font-semibold hover:cursor-pointer hover:bg-teal-500 border rounded-2xl py-5"
-              >
-                <Link to={"/playPage/" + play.id}>
-                  {play.title}, {play.semester}
+              <span key={index}>
+                <Link
+                  to={"/playPage/" + play.id}
+                  className="flex justify-between text-lg p-5 my-5 font-semibold hover:cursor-pointer hover:bg-teal-500 border rounded-2xl py-5"
+                >
+                  {play.title} - {play.semester}
                 </Link>
               </span>
             ))

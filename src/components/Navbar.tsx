@@ -14,9 +14,6 @@ export const Navbar = () => {
         <Link className="hover:underline" to="/scenisar">
           Scenisar
         </Link>
-        <Link className="hover:underline" to="/scenplannerare/:playId">
-          Scenplannerare
-        </Link>
       </div>
     </nav>
   );

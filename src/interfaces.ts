@@ -4,6 +4,7 @@ export interface Play {
   semester: string;
   acts: Act[];
   roles: Role[];
+  rehearsals: Rehearsal[];
 }
 
 export interface Role {
@@ -20,7 +21,7 @@ export interface Act {
 export interface Scene {
   id: string;
   name: string;
-  activeRoles: SceneRoleAssignment[];
+  sceneRoleAssignments: FullSceneRoleAssignment[];
 }
 
 export interface Actor {
@@ -30,7 +31,7 @@ export interface Actor {
 
 export interface Rehearsal {
   id: string;
-  date: Date;
+  date: string;
   scenes: Scene[];
 }
 
@@ -38,4 +39,14 @@ export interface SceneRoleAssignment {
   actorId: string;
   roleId: string;
   sceneId: string;
+}
+
+export interface FullSceneRoleAssignment {
+  id: {
+    actorId: number;
+    roleId: number;
+    sceneId: number;
+  };
+  actor: Actor;
+  role: Role;
 }
