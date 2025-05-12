@@ -17,7 +17,7 @@ export const Home = () => {
         </Link>
         <Link
           className="bg-lime-950 w-1/3 p-25 font-bold text-lg hover:bg-lime-900"
-          to="/form"
+          to="/scenisar"
         >
           <p>Lägg till scenisar här!</p>
         </Link>
